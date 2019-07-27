@@ -1,0 +1,24 @@
+<!-- # \myclub_site\templates\base.html -->
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>The sweet sweet smells of Augusta</title>
+    </head>
+ 
+     <body>
+     	<div class="navbar">
+     		<ul>
+     			<li><a href="{% url 'index' %}">Home</a></li>
+     			<li><a href="{% url 'update' %}">Update</a></li>
+     		</ul>
+     	</div>
+     	<div>
+     		{% block headline %}{% endblock headline %}
+     	</div>
+        <div>
+        	{% block smell_history %}{% endblock smell_history %}
+        </div>
+   </body>
+</html>
