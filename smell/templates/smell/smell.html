@@ -1,19 +1,16 @@
-{% extends 'augustasmell/index.html' %}
-
-{% block headline %}
-	<h1>As of {{date}} Augusta smells like {{smell}}</h1>
-{% endblock headline %}
-
-{% block smell_history %}
-	<h2>Recent Historical Smells</h2>
-	<ul>
-	{% for smell in smell_history %}
-		<li>
-			<p><strong>{{smell.smell}}</strong></p>
-			<p>{{smell.updated_datetime}}</p>
-		</li>
-	{% endfor %}
-	</ul>
-{% endblock smell_history %}
-
-
+{% extends 'base.html' %}
+{% block content %}
+	<h4 class="text-center" style="padding-top:150px">As of {{date}}, Augusta smells like . . .</h4>
+	<h1 class="text-center pt-2">{{smell}}</h1>
+	<h2 class="text-center pb-2 border-bottom" style="padding-top:150px;margin-left:auto;margin-right:auto;width:50%">Recent Historical Smells</h2>
+	<table class="table table-borderless">
+		<tbody>
+			{% for smell in smell_history %}
+			<tr>
+				<td class="text-right" style="width:50%">{{smell.smell}}</td>
+				<td class="text-muted">{{smell.updated_datetime}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock content %}

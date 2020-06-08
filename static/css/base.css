@@ -1,0 +1,35 @@
+html {
+    min-height: 100%;
+}
+
+body {
+    background-color: white;
+    padding-top: 50px;
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding-bottom: 60px;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+}
+
+div.main_content {
+    /* background-color: whitesmoke;
+    border: 1px solid gainsboro; */
+    max-width: 1280px;
+    margin: auto;
+    padding: 0 2% 2%;
+}
