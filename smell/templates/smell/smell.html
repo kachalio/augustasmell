@@ -2,6 +2,9 @@
 {% block content %}
 	<h4 class="text-center" style="padding-top:150px">As of {{date}}, Augusta smells like . . .</h4>
 	<h1 class="text-center pt-2">{{smell}}</h1>
+	<div class="row justify-content-center">
+		<a class= "text-center btn btn-outline-dark" style="text-align: center;" href="{% url 'update' %}">Nah, that's not right.  I want to change it.</a>	
+	</div>	
 	<h2 class="text-center pb-2 border-bottom" style="padding-top:150px;margin-left:auto;margin-right:auto;width:50%">Recent Historical Smells</h2>
 	<table class="table table-borderless">
 		<tbody>
@@ -13,4 +16,5 @@
 			{% endfor %}
 		</tbody>
 	</table>
+    
 {% endblock content %}

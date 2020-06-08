@@ -14,7 +14,7 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <img class="logo" src="{% static 'images/augusta_logo.PNG' %}" alt="#">
+    <a href="{% url 'index' %}"><img class="logo" src="{% static 'images/augusta_logo.PNG' %}" alt="#"></a>
 
     <div class="container">
         {% if messages %}
@@ -31,15 +31,6 @@
     </div>
 
     {% comment %} <!-- Footer -->
-    <footer class="footer font-small bg-light border-top">
-        <div class="footer-copyright text-center py-3">
-            <span class="text-muted mr-1">Worktracker made by Chris Helms</span>
-            <span class="text-muted"> / </span>
-            <a class="ml-1 mr-1" href="https://github.com/cjhelms/worktracker">Github Repository</a>
-            <span class="text-muted"> / </span>
-            <a class="ml-1" href="https://www.linkedin.com/in/chris-helms-a1b35914b/">LinkedIn</a>
-        </div>
-    </footer>
     <!-- Footer --> {% endcomment %}
 
     <!-- Optional JavaScript -->

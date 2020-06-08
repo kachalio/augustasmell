@@ -18,12 +18,11 @@ def index(request):
 def update(request):
     if request.method == "POST":
         form = UpdateSmell(request.POST)
-        print(form)
+        # print(form)
         if form.is_valid():
             new_smell = form.save(commit=False)
             new_smell.updated_datetime = datetime.now()
             print(form)
-            input()
             new_smell.save()
             return redirect(reverse('index'))
     else:

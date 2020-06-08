@@ -5,3 +5,6 @@ from django.db import models
 class Smell(models.Model):
     smell = models.CharField(max_length=50)
     updated_datetime = models.DateField()
+
+    def __str__(self):
+    	return self.smell
