@@ -8,12 +8,15 @@ from smell.models import Smell
 # Create your views here.
 
 def index(request):
-    date = datetime.now()
-    smell = "Rain"
-    # next line gets the most recent entry to display
-    current_smell = Smell.objects.order_by('-pk')[0]
-    last_five_smells = Smell.objects.order_by('-pk')[1:6]
-    return render(request, 'smell/smell.html', {'date' : current_smell.updated_datetime, 'smell' : current_smell.smell, 'smell_history' : last_five_smells})
+    smells = Smell.objects.order_by('-pk')
+    if len(smells) > 0:
+        smell_current = smells[0]
+        if len(smells) >= 6:
+            smell_history = smells[1:6]
+            return render(request, 'smell/smell.html', {'smell_current' : smell_current, 'smell_history' : smell_history})
+        else:
+            return render(request, 'smell/smell.html', {'smell_current' : smell_current})
+    return render(request, "smell/smell.html")
 
 def update(request):
     if request.method == "POST":
