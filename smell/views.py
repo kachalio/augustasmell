@@ -33,4 +33,3 @@ def update(request):
     else:
         form = UpdateSmell()
     return render(request, 'smell/update.html',{'form':form})
-

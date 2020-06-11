@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
 	{% if smell_current %}
-		<h4 class="text-center" style="padding-top:150px">As of {{smell_current.updated_datetime}}, Augusta smells like . . .</h4>
+		<h4 class="text-center" style="padding-top:100px">As of {{smell_current.updated_datetime}}, Augusta smells like . . .</h4>
 		<h1 class="text-center pt-2">{{smell_current.smell}}</h1>
 	{% else %}
-		<h4 class="text-center" style="padding-top:150px">No smells to report</h4>
+		<h4 class="text-center" style="padding-top:100px">No smells to report</h4>
 	{% endif %}
 	<div class="row justify-content-center">
-		<a class= "text-center btn btn-outline-dark" style="text-align: center;" href="{% url 'update' %}">Nah, that's not right.  I want to change it.</a>	
+		<a class= "btn btn-light mt-5" style="text-align: center;" href="{% url 'update' %}">Nah, that's not right. I want to change it.</a>	
 	</div>	
 	<h2 class="text-center pb-2 border-bottom" style="padding-top:150px;margin-left:auto;margin-right:auto;width:50%">Recent Historical Smells</h2>
-	<table class="table table-borderless">
-		<tbody>
-			{% for smell in smell_history %}
-			<tr>
-				<td class="text-right" style="width:50%">{{smell.smell}}</td>
-				<td class="text-muted">{{smell.updated_datetime}}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	{% if smell_history %}
+		<table class="table table-borderless">
+			<tbody>
+				{% for smell in smell_history %}
+				<tr>
+					<td class="text-right" style="width:50%">{{smell.smell}}</td>
+					<td class="text-muted">{{smell.updated_datetime}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<h4>No smell history to report.</h4>
+	{% endif %}	
     
 {% endblock content %}
