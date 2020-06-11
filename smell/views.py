@@ -9,10 +9,12 @@ from smell.models import Smell
 
 def index(request):
     smells = Smell.objects.order_by('-pk')
-    if len(smells) > 0:
+    num_smells = len(smells)
+    if num_smells > 0:
         smell_current = smells[0]
-        if len(smells) >= 6:
-            smell_history = smells[1:6]
+        if num_smells > 1:
+            max_smells = 6 if num_smells > 6 else num_smells
+            smell_history = smells[1:max_smells]
             return render(request, 'smell/smell.html', {'smell_current' : smell_current, 'smell_history' : smell_history})
         else:
             return render(request, 'smell/smell.html', {'smell_current' : smell_current})
