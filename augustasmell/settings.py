@@ -123,3 +123,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+#this for prod
+#STATIC_ROOT = "/home/ubuntu/augustasmell/"
