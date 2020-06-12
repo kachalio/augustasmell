@@ -1,4 +1,5 @@
 {% load static %}
+{% load tz %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,7 +28,9 @@
     </div>
 
     <div class="main_content">
+        {% timezone "America/New_York" %}
         {% block content %}{% endblock %}
+        {% endtimezone %}
     </div>
 
     {% comment %} <!-- Footer -->
