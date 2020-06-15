@@ -3,6 +3,7 @@
 	{% if smell_current %}
 		<h4 class="text-center" style="padding-top:100px">As of {{smell_current.updated_datetime}}, Augusta smells like . . .</h4>
 		<h1 class="text-center pt-2">{{smell_current.smell}}</h1>
+		<h3 class="text-center pt-2">Rating: {{smell_current.rating}}</h2>
 	{% else %}
 		<h4 class="text-center" style="padding-top:100px">No smells to report</h4>
 	{% endif %}
@@ -23,6 +24,5 @@
 		</table>
 	{% else %}
 		<h4>No smell history to report.</h4>
-	{% endif %}	
-    
+	{% endif %}
 {% endblock content %}
