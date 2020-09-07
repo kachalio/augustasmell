@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load profanity %}
 {% block content %}
 	{% if smell_current %}
 		<h4 class="text-center" style="padding-top:150px">As of {{smell_current.updated_datetime}}, Augusta smells like . . .</h4>
-		<h1 class="text-center pt-2">{{smell_current.smell}}</h1>
+		<h1 class="text-center pt-2">{{smell_current.smell|censor}}</h1>
 	{% else %}
 		<h4 class="text-center" style="padding-top:150px">No smells to report</h4>
 	{% endif %}
@@ -14,7 +15,7 @@
 		<tbody>
 			{% for smell in smell_history %}
 			<tr>
-				<td class="text-right" style="width:50%">{{smell.smell}}</td>
+				<td class="text-right" style="width:50%">{{smell.smell|censor}}</td>
 				<td class="text-muted">{{smell.updated_datetime}}</td>
 			</tr>
 			{% endfor %}

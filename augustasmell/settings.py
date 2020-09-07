@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'smell',
+    'profanity',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,6 +94,7 @@ DATABASES = {
             'PORT': env("PORT"),
         }
 }
+
 
 
 # Password validation
