@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
             'ENGINE': env("ENGINE"),
             'NAME': env("NAME"),
-            'USER': env("USER"),
+            'USER': 'admin',
             'PASSWORD': env("PASSWORD"),
             'HOST': env("HOST"),
             'PORT': env("PORT"),
@@ -139,4 +139,4 @@ STATICFILES_DIRS = [
 ]
 
 #this for prod
-#STATIC_ROOT = "/home/ubuntu/augustasmell/"
+STATIC_ROOT = "/home/ubuntu/augustasmell/static"
