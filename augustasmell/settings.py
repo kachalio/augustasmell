@@ -25,10 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qsrxo-sz)z&d%9j_w!hzi8909bkh7_f3n$d5lmt&!t9=c)9)p1'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=1)
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,17 +81,13 @@ WSGI_APPLICATION = 'augustasmell.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
     'default': {
-            'ENGINE': env("ENGINE"),
-            'NAME': env("NAME"),
-            'USER': 'admin',
-            'PASSWORD': env("PASSWORD"),
-            'HOST': env("HOST"),
-            'PORT': env("PORT"),
+        'ENGINE': env("ENGINE", default='django.db.backends.sqlite3'),
+        'NAME': env("NAME", default=os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': env("USER", default=''),
+        'PASSWORD': env("PASSWORD", default=''),
+        'HOST': env("HOST", default=''),
+        'PORT': env("PORT", default='')
         }
 }
 
