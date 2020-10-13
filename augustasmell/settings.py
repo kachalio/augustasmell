@@ -87,9 +87,15 @@ DATABASES = {
         'USER': env("USER", default=''),
         'PASSWORD': env("PASSWORD", default=''),
         'HOST': env("HOST", default=''),
-        'PORT': env("PORT", default='')
-        }
+        'PORT': env("PORT", default=''), 
+    }
 }
+
+if DATABASES['default']['ENGINE'] == "sql_server.pyodbc":
+    DATABASES['default']['OPTIONS'] = {
+        'driver': 'SQL Server Native Client 11.0',
+        'MARS_Connection': 'True',
+    }
 
 
 
