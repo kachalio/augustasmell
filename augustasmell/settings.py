@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY", default="qsrxo-sz)z&d%9j_w!hzi8909bkh7_f3n$d5lmt&!t9=c)9)p1")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=1)
@@ -93,7 +93,7 @@ DATABASES = {
 
 if DATABASES['default']['ENGINE'] == "sql_server.pyodbc":
     DATABASES['default']['OPTIONS'] = {
-        'driver': 'SQL Server Native Client 11.0',
+        'driver': env("DRIVER"),
         'MARS_Connection': 'True',
     }
 
@@ -143,4 +143,4 @@ STATICFILES_DIRS = [
 ]
 
 #this for prod
-STATIC_ROOT = "/home/ubuntu/augustasmell/static"
+STATIC_ROOT = env("STATIC", default="/static/")
