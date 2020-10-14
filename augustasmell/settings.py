@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'smell',
     'profanity',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,11 +137,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-#this for prod
-STATIC_ROOT = env("STATIC", default="/static/")
+
+# Azure stuff for static files
+
+DEFAULT_FILE_STORAGE = 'augustasmell.custom_storage.custom_azure.AzureMediaStorage'
+STATICFILES_STORAGE = 'augustasmell.custom_storage.custom_azure.AzureStaticStorage'
+
+AZURE_ACCOUNT_NAME = env('AZURE_ACCOUNT_NAME', default="")
+AZURE_STORAGE_KEY = env('AZURE_STORAGE_KEY', default="")
+AZURE_MEDIA_CONTAINER = env('AZURE_MEDIA_CONTAINER', default='media')
+AZURE_STATIC_CONTAINER = env('AZURE_STATIC_CONTAINER', default='static')
+
+# Files URL
+#AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.azureedge.net'  # CDN URL
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_STATIC_CONTAINER}/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
