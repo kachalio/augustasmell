@@ -142,23 +142,27 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-
-# Azure stuff for static files
-
-DEFAULT_FILE_STORAGE = 'augustasmell.custom_storage.custom_azure.AzureMediaStorage'
-STATICFILES_STORAGE = 'augustasmell.custom_storage.custom_azure.AzureStaticStorage'
-
-AZURE_ACCOUNT_NAME = env('AZURE_ACCOUNT_NAME', default="")
-AZURE_STORAGE_KEY = env('AZURE_STORAGE_KEY', default="")
-AZURE_MEDIA_CONTAINER = env('AZURE_MEDIA_CONTAINER', default='media')
-AZURE_STATIC_CONTAINER = env('AZURE_STATIC_CONTAINER', default='static')
-
-# Files URL
-#AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.azureedge.net'  # CDN URL
-AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
-
-STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_STATIC_CONTAINER}/'
-MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+if os.getenv("AZURE_ACCOUNT_NAME") is not None:
+    # Azure stuff for static files
+
+    DEFAULT_FILE_STORAGE = 'augustasmell.custom_storage.custom_azure.AzureMediaStorage'
+    STATICFILES_STORAGE = 'augustasmell.custom_storage.custom_azure.AzureStaticStorage'
+
+    AZURE_ACCOUNT_NAME = env('AZURE_ACCOUNT_NAME', default="")
+    AZURE_STORAGE_KEY = env('AZURE_STORAGE_KEY', default="")
+    AZURE_MEDIA_CONTAINER = env('AZURE_MEDIA_CONTAINER', default='media')
+    AZURE_STATIC_CONTAINER = env('AZURE_STATIC_CONTAINER', default='static')
+
+    # Files URL
+    #AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.azureedge.net'  # CDN URL
+    AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+
+    STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_STATIC_CONTAINER}/'
+    MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/'
+else:
+    STATIC_URL = '/static/'
+    # MEDIA_URL = '/media/'
+
 
